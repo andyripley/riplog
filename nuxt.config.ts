@@ -13,20 +13,10 @@ export default defineNuxtConfig({
     db: {
       dialect: "sqlite",
       driver: "d1",
-      connection: { databaseId: "cf7a69f3-0db4-40dd-a5cf-0fce40b9cc61" },
     },
-    kv: {
-      driver: "cloudflare-kv-binding",
-      namespaceId: "abf1a365256c4dff8f00fe486af3a63d",
-    },
-    cache: {
-      driver: "cloudflare-kv-binding",
-      namespaceId: "223991ba74c84c09bb6ec28508d0757e",
-    },
-    blob: {
-      driver: "cloudflare-r2",
-      bucketName: "blog-storage",
-    },
+    kv: true,
+    cache: true,
+    blob: true,
   },
   eslint: {
     config: {
