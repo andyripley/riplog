@@ -11,8 +11,14 @@ if (!page.value) {
 </script>
 
 <template>
-  <ContentRenderer
-    v-if="page"
-    :value="page"
-  />
+  <UPage>
+    <UPageBody>
+      <UContainer>
+        <ContentRenderer
+          v-if="page"
+          :value="page"
+        />
+      </UContainer>
+    </UPageBody>
+  </UPage>
 </template>

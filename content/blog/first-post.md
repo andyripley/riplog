@@ -1,6 +1,7 @@
 ---
 title: First Post
-date: 2026-9-11
+description: The very first post on RipLog.
+date: 2025-9-11
 tags: [test, first]
 ---
 
