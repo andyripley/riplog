@@ -8,7 +8,19 @@ export default defineNuxtConfig({
   ],
   devtools: { enabled: true },
   css: ["~/assets/css/main.css"],
-  compatibilityDate: "2025-04-03",
+  compatibilityDate: "2026-09-11",
+  nitro: {
+    preset: "cloudflare-module",
+    cloudflare: {
+      wrangler: {
+        name: "riplog",
+        observability: {
+          enabled: true,
+          traces: { enabled: true },
+        },
+      },
+    },
+  },
   hub: {
     db: {
       dialect: "sqlite",
@@ -17,7 +29,7 @@ export default defineNuxtConfig({
     },
     kv: {
       driver: "cloudflare-kv-binding",
-      namespaceId: "223991ba74c84c09bb6ec28508d0757e",
+      namespaceId: "abf1a365256c4dff8f00fe486af3a63d",
     },
     cache: {
       driver: "cloudflare-kv-binding",
@@ -25,7 +37,7 @@ export default defineNuxtConfig({
     },
     blob: {
       driver: "cloudflare-r2",
-      bucketName: "https://pub-214da011848b43fda5953aef0b2771ce.r2.dev",
+      bucketName: "blog-storage",
     },
   },
   eslint: {

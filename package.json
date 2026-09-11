@@ -8,7 +8,10 @@
     "generate": "nuxt generate",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "preview": "nuxt preview"
+    "preview": "nuxt preview",
+    "db:generate": "nuxt db generate",
+    "deploy:cloudflare": "sh -c 'if ls .output/server/db/migrations/sqlite/*.sql >/dev/null 2>&1; then pnpm exec wrangler d1 migrations apply DB --remote --config .output/server/wrangler.json || exit 1; fi && pnpm exec wrangler deploy --keep-vars'",
+    "deploy:cloudflare:preview": "sh -c 'if ls .output/server/db/migrations/sqlite/*.sql >/dev/null 2>&1; then pnpm exec wrangler d1 migrations apply DB --remote --config .output/server/wrangler.json || exit 1; fi && pnpm exec wrangler versions upload --keep-vars'"
   },
   "dependencies": {
     "@nuxt/content": "^3.16.0",
