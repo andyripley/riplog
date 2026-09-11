@@ -9,11 +9,10 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "preview": "nuxt preview",
-    "db:generate": "nuxt db generate",
-    "deploy:cloudflare": "sh -c 'if ls .output/server/db/migrations/sqlite/*.sql >/dev/null 2>&1; then pnpm exec wrangler d1 migrations apply DB --remote --config .output/server/wrangler.json || exit 1; fi && pnpm exec wrangler deploy --keep-vars'",
-    "deploy:cloudflare:preview": "sh -c 'if ls .output/server/db/migrations/sqlite/*.sql >/dev/null 2>&1; then pnpm exec wrangler d1 migrations apply DB --remote --config .output/server/wrangler.json || exit 1; fi && pnpm exec wrangler versions upload --keep-vars'"
+    "db:generate": "nuxt db generate"
   },
   "dependencies": {
+    "@libsql/client": "^0.18.0",
     "@nuxt/content": "^3.16.0",
     "@nuxt/eslint": "1.17.0",
     "@nuxt/ui": "4.11.1",
@@ -29,5 +28,8 @@
     "vue-router": "^5.3.1",
     "wrangler": "^4.131.0",
     "zod": "^4.6.1"
+  },
+  "devDependencies": {
+    "@iconify-json/lucide": "^1.2.131"
   }
 }

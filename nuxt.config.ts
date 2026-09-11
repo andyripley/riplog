@@ -9,18 +9,6 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   css: ["~/assets/css/main.css"],
   compatibilityDate: "2026-09-11",
-  nitro: {
-    preset: "cloudflare-module",
-    cloudflare: {
-      wrangler: {
-        name: "riplog",
-        observability: {
-          enabled: true,
-          traces: { enabled: true },
-        },
-      },
-    },
-  },
   hub: {
     db: {
       dialect: "sqlite",
