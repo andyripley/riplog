@@ -1,0 +1,30 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { Blink } from "../components/retro";
+---
+
+<BaseLayout
+  title="404 Not Found"
+  description="This page has been abducted by aliens."
+>
+  <div class="center">
+    <h1 class="glow" style="color:var(--red); font-size:4rem; margin:.2em 0">
+      404
+    </h1>
+    <h2>
+      <Blink>ERROR!</Blink> File Not Found
+    </h2>
+    <p>
+      The page you requested has been abducted by aliens, or maybe it moved to
+      GeoCities.
+    </p>
+    <pre style="text-align:left; display:inline-block">C:\&gt; dir page.htm
+File not found
+C:\&gt; _</pre>
+    <p>
+      <a class="bevel-btn" href="/">
+        &laquo; Return to homepage
+      </a>
+    </p>
+  </div>
+</BaseLayout>

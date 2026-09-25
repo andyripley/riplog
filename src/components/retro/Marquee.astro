@@ -1,0 +1,27 @@
+---
+/**
+ * Real <marquee>. Deprecated, but every browser still supports it,
+ * and that is the most 90s thing imaginable.
+ */
+interface Props {
+  direction?: "left" | "right" | "up" | "down";
+  behavior?: "scroll" | "slide" | "alternate";
+  scrollamount?: number;
+  color?: string;
+}
+const {
+  direction = "left",
+  behavior = "scroll",
+  scrollamount = 6,
+  color = "var(--lime)",
+} = Astro.props;
+---
+
+<marquee
+  direction={direction}
+  behavior={behavior}
+  scrollamount={scrollamount}
+  style={`color:${color}`}
+>
+  <slot />
+</marquee>

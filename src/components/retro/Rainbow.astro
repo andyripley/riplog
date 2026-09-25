@@ -1,0 +1,10 @@
+---
+interface Props {
+  as?: "span" | "h1" | "h2" | "h3" | "p";
+}
+const { as: Tag = "span" } = Astro.props;
+---
+
+<Tag class="rainbow-text">
+  <slot />
+</Tag>

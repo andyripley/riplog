@@ -1,0 +1,6 @@
+[tools]
+node = "lts"
+pnpm = "12"
+
+[env]
+_.path = ["./node_modules/.bin"]

@@ -1,0 +1,81 @@
+---
+/**
+ * Odometer-style visitor counter. Server count lives in KV (see
+ * src/pages/api/hits.ts). Degrades to "000000" if the API is unreachable.
+ */
+interface Props {
+  digits?: number;
+}
+const { digits = 6 } = Astro.props;
+const placeholder = "0".repeat(digits);
+---
+
+<div class="counter-wrap">
+  <div class="label">You are visitor number</div>
+  <hit-counter class="counter" data-digits={digits} aria-live="polite">
+    {placeholder.split("").map((d) => (
+      <span class="digit">{d}</span>
+    ))}
+  </hit-counter>
+</div>
+
+<script>
+  class HitCounter extends HTMLElement {
+    async connectedCallback() {
+      const digits = Number(this.dataset.digits ?? 6);
+      try {
+        // One increment per browser session, like a real CGI counter (sort of).
+        const counted = sessionStorage.getItem("hit-counted");
+        const res = await fetch("/api/hits", {
+          method: counted ? "GET" : "POST",
+        });
+        if (!res.ok) return;
+        const { count } = (await res.json()) as { count: number };
+        sessionStorage.setItem("hit-counted", "1");
+        const str = String(count).padStart(digits, "0");
+        this.replaceChildren(
+          ...str.split("").map((d) => {
+            const s = document.createElement("span");
+            s.className = "digit";
+            s.textContent = d;
+            return s;
+          }),
+        );
+      } catch {
+        /* the CGI-bin is down, leave zeros */
+      }
+    }
+  }
+  customElements.define("hit-counter", HitCounter);
+</script>
+
+<style>
+  .counter-wrap {
+    text-align: center;
+    margin: 0.8em 0;
+  }
+  .label {
+    font-size: 13px;
+    font-family: var(--font-sys);
+    margin-bottom: 4px;
+  }
+  .counter {
+    display: inline-flex;
+    gap: 2px;
+    background: var(--bg-dark);
+    border: 3px inset var(--silver);
+    padding: 3px;
+  }
+  .counter :global(.digit) {
+    font: bold 20px var(--font-mono);
+    color: var(--red);
+    background: linear-gradient(
+      var(--bg-dark) 0 48%,
+      var(--bg-highlight) 48% 52%,
+      var(--bg-dark) 52%
+    );
+    padding: 0 3px;
+    min-width: 1ch;
+    text-shadow: 0 0 6px var(--red);
+  }
+</style>

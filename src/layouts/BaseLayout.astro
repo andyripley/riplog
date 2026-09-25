@@ -1,0 +1,127 @@
+---
+import "@fontsource/atkinson-hyperlegible/400.css";
+import "@fontsource/atkinson-hyperlegible/700.css";
+import "../styles/retro.css";
+import { NAV, SITE } from "../consts";
+import Badges from "../components/retro/Badges.astro";
+import Blink from "../components/retro/Blink.astro";
+import CursorTrail from "../components/retro/CursorTrail.astro";
+import HitCounter from "../components/retro/HitCounter.astro";
+import Marquee from "../components/retro/Marquee.astro";
+import WebRing from "../components/retro/WebRing.astro";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title, description = SITE.description } = Astro.props;
+const fullTitle = title ? `${title} :: ${SITE.title}` : SITE.title;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const path = Astro.url.pathname;
+const isCurrent = (href: string) =>
+  href === "/" ? path === "/" : path.startsWith(href);
+const updated = SITE.lastUpdated.toLocaleDateString("en-US", {
+  month: "long",
+  day: "numeric",
+  year: "numeric",
+});
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title={SITE.title}
+      href={new URL("rss.xml", Astro.site)}
+    />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <title>{fullTitle}</title>
+  </head>
+  <body>
+    <CursorTrail />
+    <div class="page">
+      <header class="banner">
+        <h1>
+          <a href="/" style="text-decoration:none">
+            <span class="rainbow-text">~*~ {SITE.title} ~*~</span>
+          </a>
+        </h1>
+        <Marquee>{SITE.tagline}</Marquee>
+      </header>
+
+      <table class="layout" role="presentation">
+        <tbody>
+          <tr>
+            <td class="sidebar">
+              <h2>~ Navigation ~</h2>
+              <ul class="nav">
+                {NAV.map((n) => {
+                  if (n.enable) (
+                  <li>
+                    <a
+                      href={n.href}
+                      aria-current={isCurrent(n.href) ? "page" : undefined}
+                    >
+                      {n.label}
+                    </a>
+                  </li>
+                )})}
+              </ul>
+
+              <h2>~ Stats ~</h2>
+              <HitCounter />
+
+              <h2>~ Subscribe ~</h2>
+              <p class="center">
+                <a class="bevel-btn" href="/rss.xml">
+                  RSS Feed
+                </a>
+              </p>
+
+              <h2>~ Buttons ~</h2>
+              <Badges />
+            </td>
+            <td class="content">
+              <main>
+                <slot />
+              </main>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <footer class="site-footer">
+        <hr class="rainbow" />
+        <WebRing />
+        <p>
+          <Blink color="var(--yellow)">*</Blink>
+          Best viewed in <b>Netscape Navigator 4.0</b> at <b>800x600</b>{" "}
+          resolution
+          <Blink color="var(--yellow)">*</Blink>
+        </p>
+        <p>Last updated: {updated}</p>
+        <p>
+          Questions? Comments?{" "}
+          <a href={`mailto:${SITE.email}`}>E-mail the webmaster!</a>
+        </p>
+        <p>
+          &copy; {new Date().getFullYear()} {SITE.author}. All rights reserved.
+          No part of this homepage may be reproduced without permission.
+          Seriously.
+        </p>
+      </footer>
+    </div>
+  </body>
+</html>

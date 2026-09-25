@@ -1,0 +1,53 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { New, WebRing } from "../components/retro";
+
+const links = [
+  {
+    href: "https://astro.build",
+    title: "Astro",
+    blurb: "The web framework this homepage is built with.",
+    isNew: true,
+  },
+  {
+    href: "https://developers.cloudflare.com/workers/",
+    title: "Cloudflare Workers",
+    blurb: "Where this site lives. No GeoCities required!",
+  },
+  {
+    href: "https://mdxjs.com",
+    title: "MDX",
+    blurb: "Markdown + components = the future.",
+  },
+  {
+    href: "https://www.spacejam.com/1996/",
+    title: "Space Jam (1996)",
+    blurb: "Still online. A national treasure.",
+  },
+];
+---
+
+<BaseLayout
+  title="Kool Links"
+  description="The coolest sites on the World Wide Web."
+>
+  <h1 class="rainbow-text">Kool Links</h1>
+  <p>Here are some of my favorite places to surf on the Web:</p>
+  <ul class="post-list">
+    {links.map((l) => (
+      <li>
+        <h3>
+          <a href={l.href} rel="noopener">
+            {l.title}
+          </a>{" "}
+          {l.isNew && <New />}
+        </h3>
+        <div>{l.blurb}</div>
+      </li>
+    ))}
+  </ul>
+  <p>
+    Want to trade links? <a href="/guestbook/">Leave a note in my guestbook!</a>
+  </p>
+  <WebRing />
+</BaseLayout>

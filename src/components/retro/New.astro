@@ -1,0 +1,8 @@
+---
+interface Props {
+  alt?: string;
+}
+const { alt = "NEW!" } = Astro.props;
+---
+
+<span class="new-badge">{alt}</span>

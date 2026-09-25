@@ -1,0 +1,82 @@
+---
+/** CSS-built 88x31 buttons. Swap in real ones from your collection! */
+const badges = [
+  {
+    text: "Built w/ ASTRO",
+    href: "https://astro.build",
+    bg: "var(--bg-dark)",
+    fg: "var(--orange)",
+  },
+  {
+    text: "CLOUDFLARE powered",
+    href: "https://workers.cloudflare.com",
+    bg: "var(--orange)",
+    fg: "var(--bg-dark)",
+  },
+  {
+    text: "Netscape NOW!",
+    href: undefined,
+    bg: "var(--tn-teal)",
+    fg: "var(--bg-dark)",
+  },
+  {
+    text: "Y2K COMPLIANT",
+    href: undefined,
+    bg: "var(--bg-dark)",
+    fg: "var(--lime)",
+  },
+  {
+    text: "MDX inside",
+    href: "https://mdxjs.com",
+    bg: "var(--yellow)",
+    fg: "var(--bg-dark)",
+  },
+  {
+    text: "NO FRAMES",
+    href: undefined,
+    bg: "var(--tn-purple)",
+    fg: "var(--bg-dark)",
+  },
+];
+---
+
+<div class="badges">
+  {badges.map((b) => {
+    const style = `background:${b.bg};color:${b.fg}`;
+    return b.href ? (
+      <a class="badge" href={b.href} style={style} rel="noopener">
+        {b.text}
+      </a>
+    ) : (
+      <span class="badge" style={style}>
+        {b.text}
+      </span>
+    );
+  })}
+</div>
+
+<style>
+  .badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    justify-content: center;
+  }
+  .badge {
+    width: 88px;
+    height: 31px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font: bold 10px/1.05 var(--font-sys);
+    text-transform: uppercase;
+    border: 2px outset var(--border);
+    text-decoration: none;
+    overflow: hidden;
+    image-rendering: pixelated;
+  }
+  a.badge:hover {
+    border-style: inset;
+  }
+</style>

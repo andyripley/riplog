@@ -1,0 +1,11 @@
+---
+/** <blink> was removed from browsers, so we bring it back with CSS. */
+interface Props {
+  color?: string;
+}
+const { color } = Astro.props;
+---
+
+<span class="blink" style={color ? `color:${color}` : undefined}>
+  <slot />
+</span>

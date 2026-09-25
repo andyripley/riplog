@@ -1,0 +1,44 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { Marquee, Rainbow } from "../components/retro";
+import { SITE } from "../consts";
+---
+
+<BaseLayout title="About Me" description={`All about ${SITE.author}.`}>
+  <Rainbow as="h1">All About Me!</Rainbow>
+
+  <table class="data" style="margin: 0 auto 1em">
+    <tbody>
+      <tr>
+        <th>Name</th>
+        <td>{SITE.author}</td>
+      </tr>
+      <tr>
+        <th>Location</th>
+        <td>Cyberspace</td>
+      </tr>
+      <tr>
+        <th>Hobbies</th>
+        <td>Web design, computers, the X-Files</td>
+      </tr>
+      <tr>
+        <th>Modem</th>
+        <td>56k (on a good day)</td>
+      </tr>
+      <tr>
+        <th>Browser</th>
+        <td>Netscape Navigator Gold</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>
+    Edit <code>src/pages/about.astro</code> to tell the world about yourself.
+    Write about your pets, your favorite bands, and your top 10 web sites of all
+    time.
+  </p>
+
+  <Marquee behavior="alternate" color="var(--accent)">
+    Thanks for stopping by!
+  </Marquee>
+</BaseLayout>

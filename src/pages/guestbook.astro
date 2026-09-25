@@ -1,0 +1,49 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { UnderConstruction } from "../components/retro";
+---
+
+<BaseLayout title="Guestbook" description="Sign my guestbook!">
+  <h1 class="rainbow-text">Sign My Guestbook!</h1>
+  <p>
+    Let me know you stopped by! Tell me where you're from and how you found my
+    page.
+  </p>
+
+  <UnderConstruction message="The guestbook CGI script is still being written. Check back soon!">
+    <p style="font-size:14px">
+      (Future: a Workers endpoint + KV/D1 goes here.)
+    </p>
+  </UnderConstruction>
+
+  <form
+    class="center"
+    onsubmit="alert('Guestbook coming soon!'); return false;"
+  >
+    <p>
+      <label>
+        Name: <input name="name" size="30" />
+      </label>
+    </p>
+    <p>
+      <label>
+        Homepage URL: <input name="url" size="30" />
+      </label>
+    </p>
+    <p>
+      <label>
+        Comments:
+        <br />
+        <textarea name="msg" rows="5" cols="40"></textarea>
+      </label>
+    </p>
+    <p>
+      <button class="bevel-btn" type="submit">
+        Sign it!
+      </button>
+      <button class="bevel-btn" type="reset">
+        Clear
+      </button>
+    </p>
+  </form>
+</BaseLayout>

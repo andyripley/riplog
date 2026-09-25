@@ -1,0 +1,395 @@
+/* ==========================================================
+   RETRO.CSS  --  hand-coded in Notepad (not really) circa 1998
+   ========================================================== */
+
+:root {
+  /* Tokyo Night palette */
+  --tn-bg: #1a1b26;
+  --tn-bg-dark: #16161e;
+  --tn-bg-storm: #24283b;
+  --tn-bg-highlight: #292e42;
+  --tn-terminal-black: #414868;
+  --tn-comment: #565f89;
+  --tn-fg: #c0caf5;
+  --tn-fg-dark: #a9b1d6;
+  --tn-blue: #7aa2f7;
+  --tn-cyan: #7dcfff;
+  --tn-teal: #73daca;
+  --tn-green: #9ece6a;
+  --tn-yellow: #e0af68;
+  --tn-orange: #ff9e64;
+  --tn-red: #f7768e;
+  --tn-magenta: #bb9af7;
+  --tn-purple: #9d7cd8;
+
+  /* Semantic roles */
+  --bg: var(--tn-bg);
+  --bg-dark: var(--tn-bg-dark);
+  --bg-highlight: var(--tn-bg-highlight);
+  --panel: var(--tn-bg-storm);
+  --text: var(--tn-fg);
+  --link: var(--tn-cyan);
+  --visited: var(--tn-purple);
+  --hover: var(--tn-yellow);
+  --accent: var(--tn-magenta);
+  --lime: var(--tn-green);
+  --yellow: var(--tn-yellow);
+  --orange: var(--tn-orange);
+  --red: var(--tn-red);
+  --blue: var(--tn-blue);
+  --silver: var(--tn-fg-dark);
+  --border: var(--tn-comment);
+  --rainbow:
+    var(--tn-red), var(--tn-orange), var(--tn-yellow), var(--tn-green),
+    var(--tn-cyan), var(--tn-blue), var(--tn-magenta);
+  --font-body: "Times New Roman", Times, serif;
+  --font-display:
+    "Atkinson Hyperlegible", Verdana, Tahoma, system-ui, sans-serif;
+  --font-mono: "Courier New", Courier, monospace;
+  --font-sys: "MS Sans Serif", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  color: var(--text);
+  background: var(--bg) url("/img/starfield.svg") repeat;
+  background-attachment: fixed;
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 1.45;
+}
+
+/* Classic link colors */
+a {
+  color: var(--link);
+}
+a:visited {
+  color: var(--visited);
+}
+a:hover {
+  color: var(--hover);
+  text-decoration: underline wavy;
+}
+a:focus-visible {
+  outline: 2px dashed var(--yellow);
+  outline-offset: 2px;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  line-height: 1.2;
+}
+h2 {
+  color: var(--yellow);
+}
+h3 {
+  color: var(--lime);
+}
+
+img {
+  max-width: 100%;
+}
+
+code,
+pre,
+kbd {
+  font-family: var(--font-mono);
+}
+code {
+  background: var(--bg-dark);
+  color: var(--lime);
+  padding: 0 0.25em;
+  border: 1px solid var(--bg-highlight);
+}
+pre {
+  background: var(--bg-dark);
+  color: var(--lime);
+  border: 3px inset var(--border);
+  padding: 0.75em;
+  overflow-x: auto;
+}
+pre code {
+  border: 0;
+  padding: 0;
+  background: none;
+}
+
+blockquote {
+  margin: 1em 0;
+  padding: 0.5em 1em;
+  border-left: 6px double var(--accent);
+  background: color-mix(in srgb, var(--accent) 8%, transparent);
+  font-style: italic;
+}
+
+table.data {
+  border-collapse: collapse;
+}
+table.data th,
+table.data td {
+  border: 2px ridge var(--border);
+  padding: 0.25em 0.5em;
+}
+
+/* ---------- page chrome ---------- */
+
+.page {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 12px;
+}
+
+.banner {
+  text-align: center;
+  padding: 12px 8px 4px;
+}
+
+.banner h1 {
+  margin: 0.2em 0;
+  font-size: clamp(2rem, 6vw, 3.4rem);
+}
+
+.banner .tagline {
+  font-family: var(--font-display);
+  color: var(--yellow);
+}
+
+/* Old-school table layout. role="presentation" in markup. */
+table.layout {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 8px;
+}
+
+td.sidebar {
+  width: 200px;
+  vertical-align: top;
+  background: var(--panel);
+  border: 4px ridge var(--border);
+  padding: 10px;
+  font-family: var(--font-display);
+  font-size: 16px;
+}
+
+td.content {
+  vertical-align: top;
+  background: color-mix(in srgb, var(--bg) 90%, transparent);
+  border: 4px ridge var(--border);
+  padding: 16px 20px;
+}
+
+@media (max-width: 720px) {
+  table.layout,
+  table.layout tbody,
+  table.layout tr,
+  table.layout td {
+    display: block;
+    width: 100%;
+  }
+  td.sidebar {
+    margin-bottom: 8px;
+  }
+}
+
+.sidebar h2 {
+  font-size: 1.05rem;
+  margin: 0.8em 0 0.3em;
+  color: var(--yellow);
+  text-align: center;
+}
+
+.nav {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.nav li {
+  margin: 0.35em 0;
+}
+.nav li::before {
+  content: "\2605"; /* star */
+  color: var(--yellow);
+  margin-right: 0.35em;
+  display: inline-block;
+  animation: spin 3s linear infinite;
+}
+.nav a[aria-current="page"] {
+  color: var(--yellow);
+  font-weight: bold;
+}
+
+.center {
+  text-align: center;
+}
+
+footer.site-footer {
+  text-align: center;
+  font-size: 14px;
+  font-family: var(--font-sys);
+  padding: 12px;
+  color: var(--silver);
+}
+footer.site-footer p {
+  margin: 0.4em 0;
+}
+
+/* ---------- retro effects ---------- */
+
+.rainbow-text {
+  background: linear-gradient(90deg, var(--rainbow), var(--tn-red));
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: rainbow 4s linear infinite;
+  filter: drop-shadow(2px 2px 0 var(--bg-dark));
+}
+
+/* Static gradient: readable, no glow or animation */
+.gradient-text {
+  background: linear-gradient(
+    90deg,
+    var(--tn-cyan),
+    var(--tn-blue),
+    var(--tn-magenta)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.glow {
+  text-shadow:
+    0 0 4px currentColor,
+    0 0 10px currentColor;
+}
+
+.blink {
+  animation: blink 1s step-end infinite;
+}
+
+hr.rainbow,
+.prose hr {
+  border: 0;
+  height: 6px;
+  margin: 1.5em 0;
+  background: linear-gradient(90deg, var(--rainbow));
+  border-radius: 3px;
+}
+
+.bevel-btn {
+  display: inline-block;
+  font-family: var(--font-sys);
+  font-size: 14px;
+  color: var(--bg-dark) !important;
+  background: var(--silver);
+  border: 2px outset var(--text);
+  padding: 3px 10px;
+  text-decoration: none !important;
+  cursor: pointer;
+}
+.bevel-btn:active {
+  border-style: inset;
+}
+
+.new-badge {
+  display: inline-block;
+  font: bold 11px var(--font-sys);
+  color: var(--bg-dark);
+  background: var(--red);
+  padding: 1px 4px;
+  transform: rotate(-8deg);
+  animation: blink 0.8s step-end infinite;
+  vertical-align: middle;
+}
+
+marquee {
+  font-family: var(--font-display);
+}
+
+/* ---------- blog bits ---------- */
+
+.post-list {
+  list-style: none;
+  padding: 0;
+}
+.post-list li {
+  border: 2px dashed var(--accent);
+  padding: 0.6em 0.8em;
+  margin: 0.8em 0;
+  background: color-mix(in srgb, var(--panel) 70%, transparent);
+}
+.post-list .date {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--silver);
+}
+.post-list h3 {
+  margin: 0.2em 0;
+}
+
+.post-meta {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--silver);
+  border: 2px inset var(--border);
+  background: var(--bg-dark);
+  padding: 0.4em 0.7em;
+  margin-bottom: 1em;
+}
+.post-meta b {
+  color: var(--lime);
+}
+
+.tag {
+  display: inline-block;
+  font: 12px var(--font-mono);
+  border: 1px solid var(--link);
+  padding: 0 4px;
+  margin-right: 4px;
+}
+
+.prose h2 {
+  border-bottom: 2px dotted var(--yellow);
+}
+.prose img {
+  border: 4px ridge var(--border);
+}
+
+/* ---------- keyframes ---------- */
+
+@keyframes blink {
+  50% {
+    visibility: hidden;
+  }
+}
+@keyframes rainbow {
+  to {
+    background-position: 200% center;
+  }
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Be nice to folks who don't want the full 1997 experience */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+  }
+}
