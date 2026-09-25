@@ -1,0 +1,59 @@
+---
+import type { CollectionEntry } from "astro:content";
+import New from "./New.astro";
+import Tag from "./Tag.astro";
+import { formatDate } from "../lib/posts";
+
+interface Props {
+  posts: CollectionEntry<"blog">[];
+  showTags?: boolean;
+}
+
+const { posts, showTags = false } = Astro.props;
+
+const TWO_WEEKS = 14 * 24 * 60 * 60 * 1000;
+const isNew = (d: Date) => Date.now() - d.valueOf() < TWO_WEEKS;
+---
+
+<ul class="post-list">
+  {posts.map((p) => (
+    <li>
+      <span class="date">{formatDate(p.data.pubDate)}</span>
+      <h3>
+        <a href={`/blog/${p.id}/`}>{p.data.title}</a>
+        {isNew(p.data.pubDate) && <New />}
+        {p.data.draft && <Tag variant="draft">DRAFT</Tag>}
+      </h3>
+      <div>{p.data.description}</div>
+      {showTags && p.data.tags.length > 0 && (
+        <div>
+          {p.data.tags.map((t) => (
+            <Tag>{t}</Tag>
+          ))}
+        </div>
+      )}
+    </li>
+  ))}
+</ul>
+
+<style>
+  .post-list {
+    list-style: none;
+    padding: 0;
+
+    & li {
+      border: 2px dashed var(--accent);
+      padding: 0.6em 0.8em;
+      margin: 0.8em 0;
+      background: color-mix(in srgb, var(--panel) 70%, transparent);
+    }
+    & h3 {
+      margin: 0.2em 0;
+    }
+  }
+  .date {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    color: var(--silver);
+  }
+</style>
