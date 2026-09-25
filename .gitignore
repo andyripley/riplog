@@ -1,12 +1,15 @@
 # build output
 dist/
-.astro/
+.archive/
+.worker/
+.nuxt/
+.output/
+.data/
 
 # deps
 node_modules/
 
 # cloudflare
-.worker/
 .wrangler/
 .dev.vars*
 !.dev.vars.example

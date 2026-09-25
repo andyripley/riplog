@@ -1,0 +1,86 @@
+<script setup lang="ts">
+withDefaults(
+  defineProps<{
+    message?: string;
+  }>(),
+  {
+    message: "This page is under construction!",
+  },
+);
+</script>
+
+<template>
+  <div class="uc" role="note">
+    <div class="stripes" aria-hidden="true" />
+    <div class="body">
+      <span class="cone" aria-hidden="true" />
+      <strong class="blink">UNDER CONSTRUCTION</strong>
+      <p>{{ message }}</p>
+      <slot />
+    </div>
+    <div class="stripes" aria-hidden="true" />
+  </div>
+</template>
+
+<style scoped>
+.uc {
+  max-width: 420px;
+  margin: 1.2em auto;
+  border: 3px solid var(--bg-dark);
+  background: var(--yellow);
+  color: var(--bg-dark);
+  font-family: var(--font-display);
+  text-align: center;
+}
+
+.stripes {
+  height: 18px;
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--bg-dark) 0 14px,
+    var(--yellow) 14px 28px
+  );
+  background-size: 40px 18px;
+  animation: slide 1s linear infinite;
+}
+
+.body {
+  padding: 0.5em 1em;
+}
+
+.body strong {
+  font-size: 1.4rem;
+  letter-spacing: 2px;
+}
+
+.body p {
+  margin: 0.3em 0;
+}
+
+.cone {
+  display: block;
+  width: 0;
+  height: 0;
+  margin: 0.2em auto 0.3em;
+  border-left: 14px solid transparent;
+  border-right: 14px solid transparent;
+  border-bottom: 34px solid var(--orange);
+  position: relative;
+}
+
+.cone::after {
+  content: "";
+  position: absolute;
+  left: -9px;
+  top: 14px;
+  width: 18px;
+  height: 6px;
+  background: var(--text);
+}
+
+@keyframes slide {
+  to {
+    background-position: 40px 0;
+  }
+}
+</style>
