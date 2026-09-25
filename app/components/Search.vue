@@ -77,14 +77,21 @@ onBeforeUnmount(() => document.removeEventListener("click", onDocumentClick));
 </script>
 
 <template>
-  <div ref="root" class="search" @keydown="onKeydown">
+  <div
+    ref="root"
+    class="search"
+    @keydown="onKeydown"
+  >
     <form
       role="search"
       class="search-form"
       action="/blog"
       @submit.prevent="submit"
     >
-      <label for="site-search-input" class="sr-only">Search blog posts</label>
+      <label
+        for="site-search-input"
+        class="sr-only"
+      >Search blog posts</label>
       <input
         id="site-search-input"
         ref="input"
@@ -99,9 +106,13 @@ onBeforeUnmount(() => document.removeEventListener("click", onDocumentClick));
         :aria-expanded="open"
         @focus="load"
         @input="runSearch"
-      />
+      >
     </form>
-    <div id="site-search-status" class="sr-only" aria-live="polite">
+    <div
+      id="site-search-status"
+      class="sr-only"
+      aria-live="polite"
+    >
       {{ statusMessage }}
     </div>
     <ul
@@ -110,13 +121,24 @@ onBeforeUnmount(() => document.removeEventListener("click", onDocumentClick));
       ref="resultList"
       class="search-results"
     >
-      <li v-for="result in results" :key="result.id">
-        <NuxtLink :to="result.id" @click="close">
+      <li
+        v-for="result in results"
+        :key="result.id"
+      >
+        <NuxtLink
+          :to="result.id"
+          @click="close"
+        >
           {{ result.title }}
           <span class="search-desc">{{ result.content.slice(0, 120) }}</span>
         </NuxtLink>
       </li>
-      <li v-if="results.length === 0" class="search-empty">No posts found.</li>
+      <li
+        v-if="results.length === 0"
+        class="search-empty"
+      >
+        No posts found.
+      </li>
     </ul>
   </div>
 </template>

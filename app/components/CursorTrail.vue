@@ -27,12 +27,12 @@ onMounted(() => {
 
     const sparkle = document.createElement("span");
     sparkle.className = "sparkle";
-    sparkle.textContent =
-      glyphs[Math.floor(Math.random() * glyphs.length)] ?? "*";
+    sparkle.textContent
+      = glyphs[Math.floor(Math.random() * glyphs.length)] ?? "*";
     sparkle.style.left = `${event.clientX}px`;
     sparkle.style.top = `${event.clientY}px`;
-    sparkle.style.color =
-      colors[Math.floor(Math.random() * colors.length)] ?? "var(--yellow)";
+    sparkle.style.color
+      = colors[Math.floor(Math.random() * colors.length)] ?? "var(--yellow)";
 
     const removeSparkle = () => {
       sparkle.remove();
@@ -60,7 +60,10 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <span class="cursor-trail-anchor" aria-hidden="true" />
+  <span
+    class="cursor-trail-anchor"
+    aria-hidden="true"
+  />
 </template>
 
 <style>

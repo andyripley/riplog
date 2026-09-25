@@ -12,7 +12,8 @@ onMounted(async () => {
     const body = (await response.json()) as { count: number };
     sessionStorage.setItem("hit-counted", "1");
     count.value = String(body.count).padStart(props.digits, "0");
-  } catch {
+  }
+  catch {
     // Keep zero placeholder when storage or API is unavailable.
   }
 });
@@ -20,9 +21,18 @@ onMounted(async () => {
 
 <template>
   <div class="counter-wrap">
-    <div class="label">You are visitor number</div>
-    <div class="counter" aria-live="polite">
-      <span v-for="(digit, index) in count" :key="index" class="digit">
+    <div class="label">
+      You are visitor number
+    </div>
+    <div
+      class="counter"
+      aria-live="polite"
+    >
+      <span
+        v-for="(digit, index) in count"
+        :key="index"
+        class="digit"
+      >
         {{ digit }}
       </span>
     </div>

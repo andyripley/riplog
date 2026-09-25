@@ -10,7 +10,10 @@ withDefaults(
 </script>
 
 <template>
-  <component :is="as" class="rainbow-text">
+  <component
+    :is="as"
+    class="rainbow-text"
+  >
     <slot />
   </component>
 </template>

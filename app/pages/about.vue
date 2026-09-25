@@ -10,6 +10,9 @@ if (!page.value) {
 
 <template>
   <div class="prose">
-    <ContentRenderer v-if="page" :value="page" />
+    <ContentRenderer
+      v-if="page"
+      :value="page"
+    />
   </div>
 </template>

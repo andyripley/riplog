@@ -7,7 +7,9 @@ defineProps<{ post: BlogCollectionItem }>();
 <template>
   <article class="prose">
     <p><NuxtLink to="/blog">&laquo; Back to the Web Log</NuxtLink></p>
-    <h1 class="gradient-text">{{ post.title }}</h1>
+    <h1 class="gradient-text">
+      {{ post.title }}
+    </h1>
     <div class="post-meta">
       <div>
         <b>Posted:</b>
@@ -21,21 +23,30 @@ defineProps<{ post: BlogCollectionItem }>();
           {{ formatDate(post.updatedDate) }}
         </time>
       </div>
-      <div v-if="post.mood"><b>Current mood:</b> {{ post.mood }}</div>
+      <div v-if="post.mood">
+        <b>Current mood:</b> {{ post.mood }}
+      </div>
       <div v-if="post.nowPlaying">
         <b>Now playing:</b> {{ post.nowPlaying }}
       </div>
       <div v-if="post.tags?.length">
         <b>Tags:</b>
-        <Tag v-for="tag in post.tags" :key="tag">{{ tag }}</Tag>
+        <Tag
+          v-for="tag in post.tags"
+          :key="tag"
+        >
+          {{ tag }}
+        </Tag>
       </div>
     </div>
 
     <slot />
 
-    <hr class="rainbow" />
+    <hr class="rainbow">
     <p class="center">
-      <Button href="/blog">&laquo; More posts</Button>
+      <Button href="/blog">
+        &laquo; More posts
+      </Button>
     </p>
   </article>
 </template>

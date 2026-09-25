@@ -16,12 +16,18 @@ function isCurrent(href: string) {
 
 <template>
   <CursorTrail />
-  <a class="skip-link" href="#main-content">Skip to content</a>
+  <a
+    class="skip-link"
+    href="#main-content"
+  >Skip to content</a>
   <div class="page">
     <header class="banner">
       <div class="banner-row">
         <h1 class="site-title">
-          <NuxtLink to="/" class="site-title-link">
+          <NuxtLink
+            to="/"
+            class="site-title-link"
+          >
             <span class="rainbow-text">{{ siteConfig.title }}</span>
           </NuxtLink>
         </h1>
@@ -30,14 +36,20 @@ function isCurrent(href: string) {
       <Marquee>{{ siteConfig.tagline }}</Marquee>
     </header>
 
-    <table class="layout" role="presentation">
+    <table
+      class="layout"
+      role="presentation"
+    >
       <tbody>
         <tr>
           <td class="sidebar">
             <nav aria-label="Primary navigation">
               <h2>~ Navigation ~</h2>
               <ul class="nav center">
-                <li v-for="item in navConfig" :key="item.href">
+                <li
+                  v-for="item in navConfig"
+                  :key="item.href"
+                >
                   <NuxtLink
                     :to="item.href"
                     :aria-current="isCurrent(item.href) ? 'page' : undefined"
@@ -53,14 +65,19 @@ function isCurrent(href: string) {
 
             <h2>~ Subscribe ~</h2>
             <p class="center">
-              <Button href="/rss.xml">RSS Feed</Button>
+              <Button href="/rss.xml">
+                RSS Feed
+              </Button>
             </p>
 
             <h2>~ Stats ~</h2>
             <HitCounter />
           </td>
           <td class="content">
-            <main id="main-content" tabindex="-1">
+            <main
+              id="main-content"
+              tabindex="-1"
+            >
               <slot />
             </main>
           </td>
@@ -70,10 +87,14 @@ function isCurrent(href: string) {
 
     <footer class="site-footer">
       <p>
-        <Blink color="var(--yellow)">*</Blink>
+        <Blink color="var(--yellow)">
+          *
+        </Blink>
         Best viewed in <b>Netscape Navigator 4.0</b> at <b>800x600</b>
         resolution
-        <Blink color="var(--yellow)">*</Blink>
+        <Blink color="var(--yellow)">
+          *
+        </Blink>
       </p>
       <p>Last updated: {{ updated }}</p>
       <p>

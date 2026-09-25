@@ -16,13 +16,25 @@ const isInternal = computed(
 </script>
 
 <template>
-  <NuxtLink v-if="href && isInternal" class="btn" :to="href">
+  <NuxtLink
+    v-if="href && isInternal"
+    class="btn"
+    :to="href"
+  >
     <slot />
   </NuxtLink>
-  <a v-else-if="href" class="btn" :href="href">
+  <a
+    v-else-if="href"
+    class="btn"
+    :href="href"
+  >
     <slot />
   </a>
-  <button v-else class="btn" :type="type">
+  <button
+    v-else
+    class="btn"
+    :type="type"
+  >
     <slot />
   </button>
 </template>

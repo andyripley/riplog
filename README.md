@@ -15,22 +15,18 @@ Tools are pinned with mise:
 
 ```sh
 mise install
-mise exec -- pnpm install
-mise exec -- pnpm dev
+pnpm install
+pnpm dev
 ```
 
 Run all local gates with:
 
 ```sh
-mise exec -- pnpm check
-mise exec -- pnpm lint
-mise exec -- pnpm format:check
-mise exec -- pnpm build
-mise exec -- pnpm test:output
+pnpm check
+pnpm lint
+pnpm format:check
+pnpm build
+pnpm test:output
 ```
 
-`mise exec -- pnpm preview` builds the Cloudflare Worker, applies D1 migrations to local Wrangler storage, and starts Wrangler. Run `mise exec -- pnpm smoke` in another terminal while it is listening on port 8787.
-
-Local production-mode Studio fails closed until OAuth variables are supplied. Set `EXPECT_STUDIO=true` when running smoke tests against an environment with configured Studio authentication.
-
-Cloudflare and Studio setup is documented in `docs/cloudflare-setup.md`.
+`pnpm preview` builds the Cloudflare Worker, applies D1 migrations to local Wrangler storage, and starts Wrangler.

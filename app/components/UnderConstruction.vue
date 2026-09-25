@@ -10,15 +10,27 @@ withDefaults(
 </script>
 
 <template>
-  <div class="uc" role="note">
-    <div class="stripes" aria-hidden="true" />
+  <div
+    class="uc"
+    role="note"
+  >
+    <div
+      class="stripes"
+      aria-hidden="true"
+    />
     <div class="body">
-      <span class="cone" aria-hidden="true" />
+      <span
+        class="cone"
+        aria-hidden="true"
+      />
       <strong class="blink">UNDER CONSTRUCTION</strong>
       <p>{{ message }}</p>
       <slot />
     </div>
-    <div class="stripes" aria-hidden="true" />
+    <div
+      class="stripes"
+      aria-hidden="true"
+    />
   </div>
 </template>
 

@@ -10,7 +10,10 @@ withDefaults(
 </script>
 
 <template>
-  <span class="tag" :class="{ draft: variant === 'draft' }">
+  <span
+    class="tag"
+    :class="{ draft: variant === 'draft' }"
+  >
     <slot />
   </span>
 </template>

@@ -10,7 +10,10 @@ if (!post.value) {
 </script>
 
 <template>
-  <PostLayout v-if="post" :post="post">
+  <PostLayout
+    v-if="post"
+    :post="post"
+  >
     <ContentRenderer :value="post" />
   </PostLayout>
 </template>

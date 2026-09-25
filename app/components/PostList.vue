@@ -12,7 +12,10 @@ withDefaults(
 
 <template>
   <ul class="post-list">
-    <li v-for="post in posts" :key="post.path">
+    <li
+      v-for="post in posts"
+      :key="post.path"
+    >
       <span class="date">{{ formatDate(post.pubDate) }}</span>
       <h3>
         <NuxtLink :to="post.path">{{ post.title }}</NuxtLink>
@@ -20,7 +23,12 @@ withDefaults(
       </h3>
       <div>{{ post.description }}</div>
       <div v-if="showTags && post.tags?.length">
-        <Tag v-for="tag in post.tags" :key="tag">{{ tag }}</Tag>
+        <Tag
+          v-for="tag in post.tags"
+          :key="tag"
+        >
+          {{ tag }}
+        </Tag>
       </div>
     </li>
   </ul>
