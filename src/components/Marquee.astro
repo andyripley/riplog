@@ -6,21 +6,22 @@
 interface Props {
   direction?: "left" | "right";
   behavior?: "scroll" | "alternate";
-  /** Seconds per pass */
+  /** Seconds per pass; defaults to 18 for scroll and 12 for alternate. */
   duration?: number;
   color?: string;
 }
 const {
   direction = "left",
   behavior = "scroll",
-  duration = 12,
+  duration,
   color = "var(--lime)",
 } = Astro.props;
+const resolvedDuration = duration ?? (behavior === "scroll" ? 18 : 12);
 ---
 
 <div
   class:list={["marquee", behavior, direction]}
-  style={`--marquee-color:${color};--marquee-duration:${duration}s`}
+  style={`--marquee-color:${color};--marquee-duration:${resolvedDuration}s`}
 >
   <span class="track">
     <slot />

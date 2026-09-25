@@ -42,7 +42,7 @@
     var(--tn-cyan), var(--tn-blue), var(--tn-magenta);
 
   /* Fonts */
-  --font-body: "Times New Roman", Times, serif;
+  --font-body: "Atkinson Hyperlegible", Verdana, Tahoma, system-ui, sans-serif;
   --font-display:
     "Atkinson Hyperlegible", Verdana, Tahoma, system-ui, sans-serif;
   --font-mono: "Courier New", Courier, monospace;

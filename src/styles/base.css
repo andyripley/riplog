@@ -86,18 +86,17 @@ blockquote {
   font-style: italic;
 }
 
-table.data {
-  border-collapse: collapse;
-
+/* Rendered Markdown and MDX content. */
+.prose {
+  & table {
+    margin: 0 auto 1em;
+    border-collapse: collapse;
+  }
   & th,
   & td {
     border: 2px ridge var(--border);
     padding: 0.25em 0.5em;
   }
-}
-
-/* MDX post body (rendered into PostLayout's <article class="prose">) */
-.prose {
   & h2 {
     border-bottom: 2px dotted var(--yellow);
   }

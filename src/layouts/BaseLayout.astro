@@ -10,7 +10,6 @@ import CursorTrail from "../components/CursorTrail.astro";
 import HitCounter from "../components/HitCounter.astro";
 import Marquee from "../components/Marquee.astro";
 import Search from "../components/Search.astro";
-import WebRing from "../components/WebRing.astro";
 
 interface Props {
   title?: string;
@@ -38,7 +37,7 @@ const updated = SITE.lastUpdated.toLocaleDateString("en-US", {
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <link
       rel="alternate"
@@ -71,7 +70,7 @@ const updated = SITE.lastUpdated.toLocaleDateString("en-US", {
           <tr>
             <td class="sidebar">
               <h2>~ Navigation ~</h2>
-              <ul class="nav">
+              <ul class="nav" style="text-align:center">
                 {NAV.filter((n) => n.enable).map((n) => (
                   <li>
                     <a
@@ -84,16 +83,16 @@ const updated = SITE.lastUpdated.toLocaleDateString("en-US", {
                 ))}
               </ul>
 
-              <h2>~ Stats ~</h2>
-              <HitCounter />
+              <h2>~ Socials ~</h2>
+              <Badges />
 
               <h2>~ Subscribe ~</h2>
               <p class="center">
                 <Button href="/rss.xml">RSS Feed</Button>
               </p>
 
-              <h2>~ Buttons ~</h2>
-              <Badges />
+              <h2>~ Stats ~</h2>
+              <HitCounter />
             </td>
             <td class="content">
               <main>

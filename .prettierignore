@@ -3,3 +3,5 @@ dist/
 .wrangler/
 pnpm-lock.yaml
 .worker/
+.agents/
+AGENTS.md
