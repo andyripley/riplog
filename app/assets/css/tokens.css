@@ -1,0 +1,50 @@
+/* Design tokens: Tokyo Night palette, semantic color roles, and fonts. */
+
+:root {
+  /* Tokyo Night palette */
+  --tn-bg: #1a1b26;
+  --tn-bg-dark: #16161e;
+  --tn-bg-storm: #24283b;
+  --tn-bg-highlight: #292e42;
+  --tn-terminal-black: #414868;
+  --tn-comment: #565f89;
+  --tn-fg: #c0caf5;
+  --tn-fg-dark: #a9b1d6;
+  --tn-blue: #7aa2f7;
+  --tn-cyan: #7dcfff;
+  --tn-teal: #73daca;
+  --tn-green: #9ece6a;
+  --tn-yellow: #e0af68;
+  --tn-orange: #ff9e64;
+  --tn-red: #f7768e;
+  --tn-magenta: #bb9af7;
+  --tn-purple: #9d7cd8;
+
+  /* Semantic roles */
+  --bg: var(--tn-bg);
+  --bg-dark: var(--tn-bg-dark);
+  --bg-highlight: var(--tn-bg-highlight);
+  --panel: var(--tn-bg-storm);
+  --text: var(--tn-fg);
+  --link: var(--tn-cyan);
+  --visited: var(--tn-purple);
+  --hover: var(--tn-yellow);
+  --accent: var(--tn-magenta);
+  --lime: var(--tn-green);
+  --yellow: var(--tn-yellow);
+  --orange: var(--tn-orange);
+  --red: var(--tn-red);
+  --blue: var(--tn-blue);
+  --silver: var(--tn-fg-dark);
+  --border: var(--tn-comment);
+  --rainbow:
+    var(--tn-red), var(--tn-orange), var(--tn-yellow), var(--tn-green),
+    var(--tn-cyan), var(--tn-blue), var(--tn-magenta);
+
+  /* Fonts */
+  --font-body: "Atkinson Hyperlegible", Verdana, Tahoma, system-ui, sans-serif;
+  --font-display:
+    "Atkinson Hyperlegible", Verdana, Tahoma, system-ui, sans-serif;
+  --font-mono: "Courier New", Courier, monospace;
+  --font-sys: "MS Sans Serif", Tahoma, Geneva, Verdana, sans-serif;
+}

@@ -1,6 +1,6 @@
 # AGENTS.md
 
-Riplog: personal blog, 90s GeoCities/Angelfire look, modern build. Astro 7 static site + MDX, deployed to Cloudflare Workers.
+Riplog: personal blog, 90s GeoCities/Angelfire look, modern build. Nuxt 4 hybrid site + Nuxt Content/Studio, deployed to Cloudflare Workers with NuxtHub and D1.
 
 For design work load skill `90s-web-design` (`.agents/skills/`). Look old, build new: no obsolete HTML, accessibility required.
 
@@ -10,49 +10,59 @@ Tools are pinned via mise. Run everything as `mise exec -- pnpm <script>`.
 
 | Script | Purpose |
 |---|---|
-| `dev` | Astro dev server (local simulated KV) |
-| `build` | Build to `dist/` |
-| `preview` | Build + `wrangler dev` (real Worker runtime) |
-| `check` | `astro check` (types) |
+| `dev` | Nuxt dev server with local NuxtHub data |
+| `build` | Build Cloudflare Worker to `.output/` |
+| `preview` | Build, apply local D1 migrations, start Wrangler |
+| `check` | `nuxt typecheck` |
 | `lint` / `lint:fix` | ESLint |
 | `format` / `format:check` | Prettier |
-| `cf-typegen` | Regenerate `.worker/worker-configuration.d.ts`; run after editing `wrangler.jsonc` |
-| `deploy` | Build + `wrangler deploy`. Only when asked. |
+| `test:output` | Assert generated routes, metadata, feeds, and bindings |
+| `smoke` | Exercise running Worker; set `BASE_URL` if not port 8787 |
+| `db:generate` | Generate Drizzle migration after schema changes |
+| `deploy` | Apply remote D1 migrations + deploy. Only when asked. |
 
-**Done means:** `check` 0 errors, `lint` clean, `build` succeeds, `format:check` clean for files you touched.
+**Done means:** `check` 0 errors, `lint` clean, `build` succeeds, `test:output` passes, `format:check` clean for files touched. Runtime changes also need `preview` + `smoke`.
 
 ## Layout
 
-- `src/consts.ts`: `SITE` config; `NAV` (only `enable: true` entries render).
-- `src/content.config.ts`: blog schema (`title`, `description`, `pubDate`, `updatedDate?`, `tags`, `draft`, `mood?`, `nowPlaying?`).
-- `src/content/blog/*.mdx`: posts. Files starting with `_` are ignored; copy `_template.mdx`.
-- `src/lib/posts.ts`: `getPosts()` (newest first; drafts only in dev), `formatDate()` (UTC).
-- `src/layouts/`: `BaseLayout` (header, sidebar, footer), `PostLayout`.
-- `src/components/`: flat folder, one component per file. `mdx.ts` lists components usable in posts without imports.
-- `src/styles/`: global CSS only. `index.css` imports `tokens` → `base` → `layout` → `effects`.
-- `src/pages/`: routes. `api/hits.ts` = hit counter (KV `HITS`). `search.json.ts` feeds Fuse.js search. `rss.xml.ts`.
+- `nuxt.config.ts`: Nuxt modules, hybrid routes, NuxtHub D1, Studio, Nitro/Workers config.
+- `shared/env.ts`: zod-validated environment variables consumed by `nuxt.config.ts`; throws at config load on invalid/missing vars.
+- `content.config.ts`: `blog` and `pages` collection schemas.
+- `content/blog/*.md`: published posts. Unpublished Studio edits stay in Studio browser drafts, not committed frontmatter drafts.
+- `content/about.md`: Studio-editable About page.
+- `shared/site.ts`: `SITE` metadata and `NAV`.
+- `app/pages/`: public routes. Blog pages explicitly add all post paths to prerendering.
+- `app/components/`: flat Vue components, globally available to MDC and Studio.
+- `app/assets/css/`: global CSS. `index.css` imports `tokens` → `base` → `layout` → `effects`.
+- `server/api/hits.*.ts`: atomic D1 hit counter.
+- `server/db/`: Drizzle schema and generated migrations.
+- `server/routes/`: RSS and legacy sitemap redirect.
+- `docs/cloudflare-setup.md`: production resources, OAuth, Workers Builds, and counter cutover.
 
 ## Conventions
 
 - Minimal dependencies. Ask before adding any.
-- Ask before making design or architecture choices the user hasn't made.
-- Components own their styles in scoped `<style>`. Add to global CSS only for tokens, page chrome, shared effects, `.prose`.
+- Ask before making design or architecture choices user hasn't made.
+- Components own styles in scoped `<style>`. Add global CSS only for tokens, page chrome, shared effects, `.prose`.
 - Colors and fonts come from `tokens.css` variables. Never hardcode hex values in components.
-- Import components directly. `mdx.ts` is the only barrel file; add to it only components safe to use many times inside a post.
+- Components intended for MDC must use editable slots and typed props; no executable code in content.
 - Prettier: double quotes, semicolons. ESLint and Prettier stay separate; don't add `eslint-config-prettier`.
-- Don't reformat or "fix" files outside the task scope, especially files the user edited.
+- Don't reformat or fix files outside task scope, especially user-edited files.
 - Git: short lowercase commit messages. Commit only when asked.
 
 ## Gotchas
 
-- `output: "static"`: pages prerender. Anything that runs per request needs `export const prerender = false`. Read bindings via `import { env } from "cloudflare:workers"`.
-- Astro `checkOrigin` rejects POSTs with no `Origin` header. When testing with curl, add `-H "Origin: http://localhost:4321"`.
-- Worker types clash with DOM types in client `<script>`s. Use `appendChild`, not `append`.
-- Scoped styles don't reach slotted MDX content, so post body styles live in global `.prose` (`base.css`).
-- Astro inlines small CSS into the HTML. To verify styles, check the built HTML, not just `dist/_astro/*.css`.
-- The adapter uses `imageService: "compile"`: images are optimized at build time, with no Images binding needed. It also auto-adds a `SESSION` KV binding.
-- pnpm 12 blocks install scripts. Allowed packages are listed in `pnpm-workspace.yaml` under `allowBuilds`.
-- TypeScript stays on 6.x because `@astrojs/check` requires <7.
-- `site` in `astro.config.mjs` is a placeholder. RSS and sitemap URLs depend on it.
-- `.agents/` and `AGENTS.md` are Prettier-ignored on purpose (compact tables save tokens).
-- The KV hit counter is not atomic. Acceptable here.
+- Build with `nuxt build`, not `nuxt generate`: Studio OAuth and hit API require Worker runtime.
+- Public pages prerender. `/_studio`, `/__nuxt_studio/**`, and `/api/**` stay runtime routes.
+- Nuxt Content shares NuxtHub `DB`; Cloudflare D1 ID comes from `NUXT_HUB_CLOUDFLARE_DATABASE_ID`.
+- Local builds use a fake D1 ID only for Wrangler emulation. Workers Builds fails if real D1/repository variables are absent.
+- D1 migrations don't run automatically during Workers deployment. Keep migration step in `deploy:cloudflare`.
+- After schema changes: edit `server/db/schema.ts`, run `db:generate`, inspect generated SQL, then rebuild.
+- When testing hit POST directly, send matching `Origin`, e.g. `-H "Origin: http://127.0.0.1:8787"`.
+- Studio GitHub OAuth uses runtime `STUDIO_GITHUB_*` secrets plus independent `NUXT_STUDIO_AUTH_SESSION_SECRET`. Never commit them or place them in public runtime config.
+- Studio repository coordinates are build variables because Cloudflare Workers Builds isn't auto-detected by Studio.
+- Scoped component styles don't reach rendered Markdown. Post-body styles stay in global `.prose` (`base.css`).
+- pnpm 12 blocks install scripts. `allowBuilds` decisions live in `pnpm-workspace.yaml`.
+- `.agents/` and `AGENTS.md` are Prettier-ignored intentionally.
+- Built-in search loads Nuxt Content's SQLite WASM index on first focus; keep initialization lazy.
+- Old `HITS` KV must remain until D1 count migration and rollback window finish.

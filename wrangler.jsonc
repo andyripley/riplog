@@ -1,18 +1,36 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "riplog",
-  "main": "@astrojs/cloudflare/entrypoints/server",
-  "compatibility_date": "2026-09-24",
-  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
-  "assets": {
-    "binding": "ASSETS",
-    "directory": "./dist",
-    "not_found_handling": "404-page",
-  },
-  // Hit counter storage. No id => wrangler auto-provisions on first deploy;
-  // `wrangler dev` / `astro dev` use a local simulated namespace.
-  "kv_namespaces": [{ "binding": "HITS" }],
   "observability": {
-    "enabled": true,
+    "logs": {
+      "enabled": true,
+      "head_sampling_rate": 1,
+      "invocation_logs": true,
+      "persist": true
+    }
   },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_id": "cf7a69f3-0db4-40dd-a5cf-0fce40b9cc61",
+      "migrations_table": "_hub_migrations",
+      "migrations_dir": ".output/server/db/migrations/"
+    }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "BLOB",
+      "bucket_name": "blog-storage"
+    }
+  ],
+  "kv_namespaces": [
+    {
+      "binding": "KV",
+      "id": "abf1a365256c4dff8f00fe486af3a63d"
+    },
+    {
+      "binding": "CACHE",
+      "id": "223991ba74c84c09bb6ec28508d0757e"
+    }
+  ],
 }

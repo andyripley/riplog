@@ -1,5 +1,8 @@
 dist/
 .astro/
+.data/
+.nuxt/
+.output/
 .wrangler/
 pnpm-lock.yaml
 .worker/
