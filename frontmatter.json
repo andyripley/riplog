@@ -1,0 +1,14 @@
+{
+  "$schema": "https://frontmatter.codes/schema/template.schema.json",
+  "author": "Andy Ripley",
+  "name": "Riplog",
+  "type": "astro",
+  "description": "My personal ramblings",
+  "url": "https://ley.rip",
+  "frontMatter.content.pageFolders": [
+    {
+      "title": "blog",
+      "path": "[[workspace]]/src/content/blog"
+    }
+  ]
+}
