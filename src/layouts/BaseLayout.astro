@@ -3,12 +3,13 @@ import "@fontsource/atkinson-hyperlegible/400.css";
 import "@fontsource/atkinson-hyperlegible/700.css";
 import "../styles/retro.css";
 import { NAV, SITE } from "../consts";
-import Badges from "../components/retro/Badges.astro";
-import Blink from "../components/retro/Blink.astro";
-import CursorTrail from "../components/retro/CursorTrail.astro";
-import HitCounter from "../components/retro/HitCounter.astro";
-import Marquee from "../components/retro/Marquee.astro";
-import WebRing from "../components/retro/WebRing.astro";
+import Badges from "../components/Badges.astro";
+import Blink from "../components/Blink.astro";
+import CursorTrail from "../components/CursorTrail.astro";
+import HitCounter from "../components/HitCounter.astro";
+import Marquee from "../components/Marquee.astro";
+import Search from "../components/Search.astro";
+import WebRing from "../components/WebRing.astro";
 
 interface Props {
   title?: string;
@@ -53,11 +54,14 @@ const updated = SITE.lastUpdated.toLocaleDateString("en-US", {
     <CursorTrail />
     <div class="page">
       <header class="banner">
-        <h1>
-          <a href="/" style="text-decoration:none">
-            <span class="rainbow-text">~*~ {SITE.title} ~*~</span>
-          </a>
-        </h1>
+        <div class="banner-row">
+          <h1 class="site-title">
+            <a href="/" style="text-decoration:none">
+              <span class="rainbow-text">~*~ {SITE.title} ~*~</span>
+            </a>
+          </h1>
+          <Search />
+        </div>
         <Marquee>{SITE.tagline}</Marquee>
       </header>
 
@@ -67,8 +71,7 @@ const updated = SITE.lastUpdated.toLocaleDateString("en-US", {
             <td class="sidebar">
               <h2>~ Navigation ~</h2>
               <ul class="nav">
-                {NAV.map((n) => {
-                  if (n.enable) (
+                {NAV.filter((n) => n.enable).map((n) => (
                   <li>
                     <a
                       href={n.href}
@@ -77,7 +80,7 @@ const updated = SITE.lastUpdated.toLocaleDateString("en-US", {
                       {n.label}
                     </a>
                   </li>
-                )})}
+                ))}
               </ul>
 
               <h2>~ Stats ~</h2>

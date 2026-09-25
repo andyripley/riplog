@@ -1,7 +1,7 @@
 ---
 import { render } from "astro:content";
 import PostLayout from "../../layouts/PostLayout.astro";
-import * as retro from "../../components/retro";
+import * as mdx from "../../components/mdx";
 import { getPosts } from "../../lib/posts";
 
 export async function getStaticPaths() {
@@ -14,6 +14,6 @@ const { Content } = await render(post);
 ---
 
 <PostLayout post={post}>
-  {/* Retro components available in every MDX post without importing */}
-  <Content components={{ ...retro }} />
+  {/* Components from src/components/mdx.ts, usable in posts without importing */}
+  <Content components={{ ...mdx }} />
 </PostLayout>

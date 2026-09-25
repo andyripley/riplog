@@ -150,14 +150,37 @@ table.data td {
   padding: 12px;
 }
 
+/* Horizontal padding matches table.layout border-spacing so the
+   header lines up with (and never exceeds) the content below. */
 .banner {
-  text-align: center;
   padding: 12px 8px 4px;
+}
+
+.banner-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 16px;
 }
 
 .banner h1 {
   margin: 0.2em 0;
+  min-width: 0;
+  overflow-wrap: anywhere;
   font-size: clamp(2rem, 6vw, 3.4rem);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 .banner .tagline {

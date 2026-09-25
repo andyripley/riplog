@@ -16,7 +16,8 @@ Welcome to my brand new homepage! I've been working on it for _weeks_. Okay, may
 ## How it works
 
 Every post is an **MDX** file in `src/content/blog/`. That means regular Markdown, plus
-components. These retro components are available in every post without imports:
+components. These components (listed in `src/components/mdx.ts`) are available in every
+post without imports:
 
 | Component               | What it does                           |
 | ----------------------- | -------------------------------------- |
@@ -25,9 +26,6 @@ components. These retro components are available in every post without imports:
 | `<Rainbow>`             | Animated rainbow text                  |
 | `<New />`               | Blinking NEW! badge                    |
 | `<UnderConstruction />` | The classic construction sign          |
-| `<HitCounter />`        | Visitor counter backed by Workers KV   |
-| `<WebRing />`           | Webring navigation                     |
-| `<Badges />`            | 88x31 buttons                          |
 
 Here's one in action: <Blink color="var(--yellow)">THIS TEXT BLINKS</Blink> <New />
 

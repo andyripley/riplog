@@ -6,12 +6,12 @@ tags: [mdx, howto]
 mood: nerdy
 ---
 
-import Blink from "../../components/retro/Blink.astro";
+import Blink from "../../components/Blink.astro";
 
 export const favoriteSites = ["GeoCities", "Angelfire", "Tripod", "Homestead"];
 
-The retro components are auto-injected, but you can still `import` anything you like at the
-top of a post, and even `export` values:
+Components in `src/components/mdx.ts` are auto-injected, but you can still `import` anything
+you like at the top of a post, and even `export` values:
 
 <ul>
   {favoriteSites.map((s) => (
