@@ -1,11 +1,9 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import New from "../../components/New.astro";
-import { formatDate, getPosts } from "../../lib/posts";
+import PostList from "../../components/PostList.astro";
+import { getPosts } from "../../lib/posts";
 
 const posts = await getPosts();
-const TWO_WEEKS = 14 * 24 * 60 * 60 * 1000;
-const isNew = (d: Date) => Date.now() - d.valueOf() < TWO_WEEKS;
 ---
 
 <BaseLayout
@@ -13,28 +11,5 @@ const isNew = (d: Date) => Date.now() - d.valueOf() < TWO_WEEKS;
   description="Who knows. We might be into the same stuff."
 >
   <h1 class="rainbow-text">Blog Posts</h1>
-  <ul class="post-list">
-    {posts.map((p) => (
-      <li>
-        <span class="date">{formatDate(p.data.pubDate)}</span>
-        <h3>
-          <a href={`/blog/${p.id}/`}>{p.data.title}</a>
-          {isNew(p.data.pubDate) && <New />}
-          {p.data.draft && (
-            <span class="tag" style="color:var(--red)">
-              DRAFT
-            </span>
-          )}
-        </h3>
-        <div>{p.data.description}</div>
-        {p.data.tags.length > 0 && (
-          <div>
-            {p.data.tags.map((t) => (
-              <span class="tag">{t}</span>
-            ))}
-          </div>
-        )}
-      </li>
-    ))}
-  </ul>
+  <PostList posts={posts} showTags />
 </BaseLayout>

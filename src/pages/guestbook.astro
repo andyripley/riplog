@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import Button from "../components/Button.astro";
 import UnderConstruction from "../components/UnderConstruction.astro";
 ---
 
@@ -38,12 +39,8 @@ import UnderConstruction from "../components/UnderConstruction.astro";
       </label>
     </p>
     <p>
-      <button class="bevel-btn" type="submit">
-        Sign it!
-      </button>
-      <button class="bevel-btn" type="reset">
-        Clear
-      </button>
+      <Button type="submit">Sign it!</Button>
+      <Button type="reset">Clear</Button>
     </p>
   </form>
 </BaseLayout>

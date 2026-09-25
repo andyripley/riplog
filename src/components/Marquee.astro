@@ -1,27 +1,88 @@
 ---
 /**
- * Real <marquee>. Deprecated, but every browser still supports it,
- * and that is the most 90s thing imaginable.
+ * CSS-animated stand-in for the obsolete <marquee> tag.
+ * Pauses on hover/focus; static and wrapping under prefers-reduced-motion.
  */
 interface Props {
-  direction?: "left" | "right" | "up" | "down";
-  behavior?: "scroll" | "slide" | "alternate";
-  scrollamount?: number;
+  direction?: "left" | "right";
+  behavior?: "scroll" | "alternate";
+  /** Seconds per pass */
+  duration?: number;
   color?: string;
 }
 const {
   direction = "left",
   behavior = "scroll",
-  scrollamount = 6,
+  duration = 12,
   color = "var(--lime)",
 } = Astro.props;
 ---
 
-<marquee
-  direction={direction}
-  behavior={behavior}
-  scrollamount={scrollamount}
-  style={`color:${color}`}
+<div
+  class:list={["marquee", behavior, direction]}
+  style={`--marquee-color:${color};--marquee-duration:${duration}s`}
 >
-  <slot />
-</marquee>
+  <span class="track">
+    <slot />
+  </span>
+</div>
+
+<style>
+  .marquee {
+    container-type: inline-size;
+    overflow: hidden;
+    white-space: nowrap;
+    color: var(--marquee-color);
+    font-family: var(--font-display);
+
+    &:hover .track,
+    &:focus-within .track {
+      animation-play-state: paused;
+    }
+  }
+
+  .track {
+    display: inline-block;
+    animation: marquee-scroll var(--marquee-duration) linear infinite;
+  }
+
+  .alternate .track {
+    animation-name: marquee-bounce;
+    animation-timing-function: ease-in-out;
+    animation-direction: alternate;
+  }
+
+  .right .track {
+    animation-direction: reverse;
+  }
+  .right.alternate .track {
+    animation-direction: alternate-reverse;
+  }
+
+  /* Enter from the right edge, exit fully off the left edge */
+  @keyframes marquee-scroll {
+    from {
+      transform: translateX(100cqw);
+    }
+    to {
+      transform: translateX(-100%);
+    }
+  }
+
+  /* Bounce between the left and right edges */
+  @keyframes marquee-bounce {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(calc(100cqw - 100%));
+    }
+  }
+
+  /* Global rule already disables the animation; let text wrap instead of clipping */
+  @media (prefers-reduced-motion: reduce) {
+    .marquee {
+      white-space: normal;
+    }
+  }
+</style>

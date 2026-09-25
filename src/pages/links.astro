@@ -34,7 +34,7 @@ const links = [
 >
   <h1 class="rainbow-text">Kool Links</h1>
   <p>Here are some of my favorite places to surf on the Web:</p>
-  <ul class="post-list">
+  <ul class="link-list">
     {links.map((l) => (
       <li>
         <h3>
@@ -52,3 +52,20 @@ const links = [
   </p>
   <WebRing />
 </BaseLayout>
+
+<style>
+  .link-list {
+    list-style: none;
+    padding: 0;
+
+    & li {
+      border: 2px dashed var(--accent);
+      padding: 0.6em 0.8em;
+      margin: 0.8em 0;
+      background: color-mix(in srgb, var(--panel) 70%, transparent);
+    }
+    & h3 {
+      margin: 0.2em 0;
+    }
+  }
+</style>

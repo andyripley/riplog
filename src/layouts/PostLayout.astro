@@ -1,6 +1,8 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import BaseLayout from "./BaseLayout.astro";
+import Button from "../components/Button.astro";
+import Tag from "../components/Tag.astro";
 import { formatDate } from "../lib/posts";
 
 interface Props {
@@ -58,7 +60,7 @@ const {
         <div>
           <b>Tags:</b>{" "}
           {tags.map((t) => (
-            <span class="tag">{t}</span>
+            <Tag>{t}</Tag>
           ))}
         </div>
       )}
@@ -68,12 +70,24 @@ const {
 
     <hr class="rainbow" />
     <p class="center">
-      <a class="bevel-btn" href="/blog/">
-        &laquo; More posts
-      </a>
-      <a class="bevel-btn" href="/guestbook/">
-        Sign my guestbook!
-      </a>
+      <Button href="/blog/">&laquo; More posts</Button>
+      <Button href="/guestbook/">Sign my guestbook!</Button>
     </p>
   </article>
 </BaseLayout>
+
+<style>
+  .post-meta {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    color: var(--silver);
+    border: 2px inset var(--border);
+    background: var(--bg-dark);
+    padding: 0.4em 0.7em;
+    margin-bottom: 1em;
+
+    & b {
+      color: var(--lime);
+    }
+  }
+</style>

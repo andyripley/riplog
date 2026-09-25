@@ -2,8 +2,7 @@
 export const SITE = {
   title: "Riplog",
   tagline: "Ramblings on tech, hobbies, and life",
-  description:
-    "Best viewed in Netscape Navigator 4.0.",
+  description: "Best viewed in Netscape Navigator 4.0.",
   author: "Andy Ripley",
   email: "andy@ley.rip",
   // Shown in footer, like every good 90s site

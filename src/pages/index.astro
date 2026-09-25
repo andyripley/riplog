@@ -1,52 +1,22 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Blink from "../components/Blink.astro";
-import New from "../components/New.astro";
+import Button from "../components/Button.astro";
+import PostList from "../components/PostList.astro";
 import Rainbow from "../components/Rainbow.astro";
 import UnderConstruction from "../components/UnderConstruction.astro";
 import { SITE } from "../consts";
-import { formatDate, getPosts } from "../lib/posts";
+import { getPosts } from "../lib/posts";
 
 const posts = (await getPosts()).slice(0, 5);
-const TWO_WEEKS = 14 * 24 * 60 * 60 * 1000;
-const isNew = (d: Date) => Date.now() - d.valueOf() < TWO_WEEKS;
 ---
 
 <BaseLayout>
-  <div class="center">
-    <Rainbow as="h2">Welcome to my homepage!!!</Rainbow>
-    <p>
-      Hi! My name is <b>{SITE.author}</b> and this is my <i>totally awesome</i>{" "}
-      corner of the World Wide Web. Grab a Surge, pull up a chair, and stay a
-      while.
-    </p>
-    <p>
-      <Blink color="var(--lime)">&gt;&gt;&gt;</Blink> Don't forget to{" "}
-      <a href="/guestbook/">sign my guestbook</a>!{" "}
-      <Blink color="var(--lime)">&lt;&lt;&lt;</Blink>
-    </p>
-  </div>
-
-  <hr class="rainbow" />
-
-  <h2>Latest Web Log Entries</h2>
+  <h2>Latest Blog Post</h2>
   {posts.length === 0 && <p>No posts yet. Check back soon!</p>}
-  <ul class="post-list">
-    {posts.map((p) => (
-      <li>
-        <span class="date">{formatDate(p.data.pubDate)}</span>
-        <h3>
-          <a href={`/blog/${p.id}/`}>{p.data.title}</a>
-          {isNew(p.data.pubDate) && <New />}
-        </h3>
-        <div>{p.data.description}</div>
-      </li>
-    ))}
-  </ul>
+  <PostList posts={posts} />
   <p class="center">
-    <a class="bevel-btn" href="/blog/">
-      View all entries &raquo;
-    </a>
+    <Button href="/blog/">View all entries &raquo;</Button>
   </p>
 
   <UnderConstruction message="Pardon our dust! New stuff is added all the time." />

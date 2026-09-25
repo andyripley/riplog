@@ -1,10 +1,11 @@
 ---
 import "@fontsource/atkinson-hyperlegible/400.css";
 import "@fontsource/atkinson-hyperlegible/700.css";
-import "../styles/retro.css";
+import "../styles/index.css";
 import { NAV, SITE } from "../consts";
 import Badges from "../components/Badges.astro";
 import Blink from "../components/Blink.astro";
+import Button from "../components/Button.astro";
 import CursorTrail from "../components/CursorTrail.astro";
 import HitCounter from "../components/HitCounter.astro";
 import Marquee from "../components/Marquee.astro";
@@ -57,7 +58,7 @@ const updated = SITE.lastUpdated.toLocaleDateString("en-US", {
         <div class="banner-row">
           <h1 class="site-title">
             <a href="/" style="text-decoration:none">
-              <span class="rainbow-text">~*~ {SITE.title} ~*~</span>
+              <span class="rainbow-text">{SITE.title}</span>
             </a>
           </h1>
           <Search />
@@ -88,9 +89,7 @@ const updated = SITE.lastUpdated.toLocaleDateString("en-US", {
 
               <h2>~ Subscribe ~</h2>
               <p class="center">
-                <a class="bevel-btn" href="/rss.xml">
-                  RSS Feed
-                </a>
+                <Button href="/rss.xml">RSS Feed</Button>
               </p>
 
               <h2>~ Buttons ~</h2>
@@ -106,8 +105,6 @@ const updated = SITE.lastUpdated.toLocaleDateString("en-US", {
       </table>
 
       <footer class="site-footer">
-        <hr class="rainbow" />
-        <WebRing />
         <p>
           <Blink color="var(--yellow)">*</Blink>
           Best viewed in <b>Netscape Navigator 4.0</b> at <b>800x600</b>{" "}
