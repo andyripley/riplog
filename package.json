@@ -23,8 +23,6 @@
     "@libsql/client": "^0.15.15",
     "@nuxt/content": "^3.16.1",
     "@nuxthub/core": "^0.10.8",
-    "@nuxtjs/seo": "^5.3.16",
-    "@takumi-rs/core": "^2.14.0",
     "better-sqlite3": "^13.0.3",
     "drizzle-orm": "^0.44.7",
     "nuxt": "^4.5.2",

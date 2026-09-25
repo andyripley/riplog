@@ -1,6 +1,5 @@
 export default defineNuxtConfig({
   modules: [
-    "@nuxtjs/seo",
     "@nuxthub/core",
     "@nuxt/content",
     "@nuxt/eslint",
@@ -11,10 +10,6 @@ export default defineNuxtConfig({
     "@fontsource/atkinson-hyperlegible/700.css",
     "~/assets/css/index.css",
   ],
-  site: {
-    url: "https://ley.rip",
-    name: "Riplog",
-  },
   compatibilityDate: "2026-09-25",
   hub: {
     db: {
