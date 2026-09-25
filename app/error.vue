@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { NuxtError } from "#app";
-import { SITE } from "~/../shared/site";
 
+const siteConfig = useAppConfig().site;
 const props = defineProps<{ error: NuxtError }>();
 const isNotFound = computed(() => props.error.statusCode === 404);
 const isGone = computed(() => props.error.statusCode === 410);
@@ -12,7 +12,7 @@ const errorTitle = computed(() => {
 });
 
 useSeoMeta({
-  title: `${errorTitle.value} :: ${SITE.title}`,
+  title: `${errorTitle.value} :: ${siteConfig.title}`,
   description: isNotFound.value
     ? "This page has been abducted by aliens."
     : "The server tripped over a modem cable.",

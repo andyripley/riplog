@@ -1,10 +1,3 @@
-<template>
-  <NuxtRouteAnnouncer />
-  <NuxtLayout>
-    <NuxtPage />
-  </NuxtLayout>
-</template>
-
 <script setup lang="ts">
 import { SITE } from "~/../shared/site";
 
@@ -23,3 +16,10 @@ useHead({
   ],
 });
 </script>
+
+<template>
+  <NuxtRouteAnnouncer />
+  <NuxtLayout>
+    <NuxtPage />
+  </NuxtLayout>
+</template>

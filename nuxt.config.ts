@@ -4,11 +4,10 @@ export default defineNuxtConfig({
   compatibilityDate: "2026-09-25",
   devtools: { enabled: true },
   modules: [
-    "@nuxtjs/sitemap",
+    "@nuxtjs/seo",
     "@nuxthub/core",
     "@nuxt/content",
-    "nuxt-studio",
-    "@nuxtjs/robots",
+    // "nuxt-studio",
     "@nuxt/eslint",
   ],
   css: [
@@ -37,38 +36,38 @@ export default defineNuxtConfig({
       },
     },
   },
-  studio: {
-    route: "/_studio",
-    repository: {
-      provider: "github",
-      owner: env.repositoryOwner,
-      repo: env.repositoryName,
-      branch: "main",
-      private: env.repositoryPrivate,
-    },
-    git: {
-      commit: {
-        messagePrefix: "content:",
-      },
-    },
-    media: {
-      publicUrl: "/",
-    },
-  },
-  routeRules: {
-    "/": { prerender: true },
-    "/about": { prerender: true },
-    "/blog": { prerender: true },
-    "/blog/**": { prerender: true },
-    "/rss.xml": { prerender: true },
-    "/api/**": { cache: false },
-    "/_studio": { cache: false, headers: { "x-robots-tag": "noindex" } },
-    "/_studio/**": { cache: false, headers: { "x-robots-tag": "noindex" } },
-    "/__nuxt_studio/**": {
-      cache: false,
-      headers: { "x-robots-tag": "noindex" },
-    },
-  },
+  // studio: {
+  //   route: "/_studio",
+  //   repository: {
+  //     provider: "github",
+  //     owner: env.repositoryOwner,
+  //     repo: env.repositoryName,
+  //     branch: "main",
+  //     private: env.repositoryPrivate,
+  //   },
+  //   git: {
+  //     commit: {
+  //       messagePrefix: "content:",
+  //     },
+  //   },
+  //   media: {
+  //     publicUrl: "/",
+  //   },
+  // },
+  // routeRules: {
+  //   "/": { prerender: true },
+  //   "/about": { prerender: true },
+  //   "/blog": { prerender: true },
+  //   "/blog/**": { prerender: true },
+  //   "/rss.xml": { prerender: true },
+  //   "/api/**": { cache: false },
+  //   "/_studio": { cache: false, headers: { "x-robots-tag": "noindex" } },
+  //   "/_studio/**": { cache: false, headers: { "x-robots-tag": "noindex" } },
+  //   "/__nuxt_studio/**": {
+  //     cache: false,
+  //     headers: { "x-robots-tag": "noindex" },
+  //   },
+  // },
   // nitro: {
   //   preset: "cloudflare_module",
   //   prerender: {
@@ -109,13 +108,4 @@ export default defineNuxtConfig({
   //     },
   //   },
   // },
-  robots: {
-    header: false,
-    disallow: ["/_studio", "/__nuxt_studio"],
-    sitemap: "https://ley.rip/sitemap.xml",
-  },
-  sitemap: {
-    exclude: ["/_studio/**", "/__nuxt_studio/**", "/api/**"],
-    sources: ["/api/__sitemap__/urls"],
-  },
 });

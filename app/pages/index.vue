@@ -2,8 +2,6 @@
 const { data: posts } = await useAsyncData("latest-posts", () =>
   queryCollection("blog").order("pubDate", "DESC").limit(5).all(),
 );
-
-usePageSeo(undefined);
 </script>
 
 <template>

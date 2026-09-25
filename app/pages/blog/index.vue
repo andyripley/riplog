@@ -6,8 +6,6 @@ const { data: posts } = await useAsyncData("all-posts", () =>
 if (import.meta.server && posts.value) {
   prerenderRoutes(posts.value.map((post) => post.path));
 }
-
-usePageSeo("Blog", "Who knows. We might be into the same stuff.");
 </script>
 
 <template>

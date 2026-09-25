@@ -49,7 +49,7 @@ onMounted(async () => {
   padding: 3px;
 }
 
-.digit {
+.counter :global(.digit) {
   font: bold 20px var(--font-mono);
   color: var(--red);
   background: linear-gradient(
