@@ -26,6 +26,7 @@ Tools are pinned via mise. Run everything as `mise exec -- pnpm <script>`.
 ## Layout
 
 - `nuxt.config.ts`: Nuxt modules, hybrid routes, NuxtHub D1, Studio, Nitro/Workers config.
+- `shared/env.ts`: zod-validated environment variables consumed by `nuxt.config.ts`; throws at config load on invalid/missing vars.
 - `content.config.ts`: `blog` and `pages` collection schemas.
 - `content/blog/*.md`: published posts. Unpublished Studio edits stay in Studio browser drafts, not committed frontmatter drafts.
 - `content/about.md`: Studio-editable About page.
