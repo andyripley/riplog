@@ -7,6 +7,9 @@
       "head_sampling_rate": 1,
       "invocation_logs": true,
       "persist": true
+    },
+    "traces": {
+      "enabled": true
     }
   },
   "d1_databases": [
@@ -17,20 +20,20 @@
       "migrations_dir": ".output/server/db/migrations/"
     }
   ],
-  // "r2_buckets": [
-  //   {
-  //     "binding": "BLOB",
-  //     "bucket_name": "blog-storage"
-  //   }
-  // ],
-  // "kv_namespaces": [
-  //   {
-  //     "binding": "KV",
-  //     "id": "abf1a365256c4dff8f00fe486af3a63d"
-  //   },
-  //   {
-  //     "binding": "CACHE",
-  //     "id": "223991ba74c84c09bb6ec28508d0757e"
-  //   }
-  // ]
+  "r2_buckets": [
+    {
+      "binding": "BLOB",
+      "bucket_name": "blog-storage"
+    }
+  ],
+  "kv_namespaces": [
+    {
+      "binding": "KV",
+      "id": "abf1a365256c4dff8f00fe486af3a63d"
+    },
+    {
+      "binding": "CACHE",
+      "id": "223991ba74c84c09bb6ec28508d0757e"
+    }
+  ]
 }

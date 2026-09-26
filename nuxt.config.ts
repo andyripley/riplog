@@ -22,19 +22,9 @@ export default defineNuxtConfig({
       dialect: "sqlite",
       driver: "d1",
     },
-    kv: {
-      driver: "cloudflare-kv-binding",
-      namespaceId: "abf1a365256c4dff8f00fe486af3a63d",
-    },
-    cache: {
-      driver: "cloudflare-kv-binding",
-      namespaceId: "223991ba74c84c09bb6ec28508d0757e",
-    },
-    blob: {
-      driver: "cloudflare-r2",
-      binding: "BLOB",
-      bucketName: "blog-storage",
-    },
+    kv: true,
+    cache: true,
+    blob: true,
   },
   vite: {
     optimizeDeps: {
