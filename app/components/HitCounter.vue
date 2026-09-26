@@ -5,13 +5,11 @@ const count = ref("0".repeat(props.digits));
 onMounted(async () => {
   try {
     const counted = sessionStorage.getItem("hit-counted");
-    const response = await fetch("/api/hits", {
+    const hits = await $fetch<number>("/api/hits", {
       method: counted ? "GET" : "POST",
     });
-    if (!response.ok) return;
-    const body = (await response.json()) as { count: number };
     sessionStorage.setItem("hit-counted", "1");
-    count.value = String(body.count).padStart(props.digits, "0");
+    count.value = String(hits).padStart(props.digits, "0");
   }
   catch {
     // Keep zero placeholder when storage or API is unavailable.

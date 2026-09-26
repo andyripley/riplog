@@ -1,5 +1,5 @@
 [tools]
-node = "24.11"
+node = "lts"
 pnpm = "12"
 
 [env]

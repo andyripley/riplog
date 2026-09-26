@@ -1,4 +1,3 @@
-export default defineEventHandler(async (event) => {
-  prepareHitResponse(event);
-  return { count: await readHitCount() };
+export default defineEventHandler(async () => {
+  return await readHitCount();
 });

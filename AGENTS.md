@@ -16,9 +16,6 @@ Tools are pinned via mise. Run everything as `mise exec -- pnpm <script>`.
 | `check` | `nuxt typecheck` |
 | `lint` / `lint:fix` | ESLint |
 | `format` / `format:check` | Prettier |
-| `test:output` | Assert generated routes, metadata, feeds, and bindings |
-| `smoke` | Exercise running Worker; set `BASE_URL` if not port 8787 |
-| `db:generate` | Generate Drizzle migration after schema changes |
 | `deploy` | Apply remote D1 migrations + deploy. Only when asked. |
 
 **Done means:** `check` 0 errors, `lint` clean, `build` succeeds, `test:output` passes, `format:check` clean for files touched. Runtime changes also need `preview` + `smoke`.
@@ -34,8 +31,7 @@ Tools are pinned via mise. Run everything as `mise exec -- pnpm <script>`.
 - `app/pages/`: public routes. Blog pages explicitly add all post paths to prerendering.
 - `app/components/`: flat Vue components, globally available to MDC and Studio.
 - `app/assets/css/`: global CSS. `index.css` imports `tokens` → `base` → `layout` → `effects`.
-- `server/api/hits.*.ts`: atomic D1 hit counter.
-- `server/db/`: Drizzle schema and generated migrations.
+- `server/api/hits.*.ts`: atomic KV hit counter.
 - `server/routes/`: RSS and legacy sitemap redirect.
 - `docs/cloudflare-setup.md`: production resources, OAuth, Workers Builds, and counter cutover.
 
@@ -65,4 +61,3 @@ Tools are pinned via mise. Run everything as `mise exec -- pnpm <script>`.
 - pnpm 12 blocks install scripts. `allowBuilds` decisions live in `pnpm-workspace.yaml`.
 - `.agents/` and `AGENTS.md` are Prettier-ignored intentionally.
 - Built-in search loads Nuxt Content's SQLite WASM index on first focus; keep initialization lazy.
-- Old `HITS` KV must remain until D1 count migration and rollback window finish.
