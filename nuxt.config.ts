@@ -4,7 +4,13 @@ export default defineNuxtConfig({
     "@nuxt/content",
     "@nuxt/eslint",
     "@nuxt/image",
+    "nuxt-studio",
   ],
+  $production: {
+    image: {
+      provider: "cloudflare",
+    },
+  },
   devtools: {
     enabled: true,
   },
@@ -16,6 +22,10 @@ export default defineNuxtConfig({
   compatibilityDate: "2026-09-25",
   nitro: {
     preset: "cloudflare-module",
+    prerender: {
+      routes: ["/"],
+      crawlLinks: true,
+    },
   },
   hub: {
     db: {
@@ -42,6 +52,22 @@ export default defineNuxtConfig({
     },
   },
   image: {
-    provider: "cloudflare",
+    provider: "none",
+  },
+  studio: {
+    git: {
+      commit: {
+        messagePrefix: "content:",
+      },
+    },
+    media: {
+      external: true,
+    },
+    repository: {
+      provider: "github",
+      owner: "andyripley",
+      repo: "riplog",
+      branch: "main",
+    },
   },
 });

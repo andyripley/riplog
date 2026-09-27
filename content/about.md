@@ -22,6 +22,4 @@ My areas of expertise include the following:
 - CI/CD with tools like GitHub Actions or Azure DevOps.
 - User self-service.
 
-::marquee{behavior="alternate" color="var(--accent)"}
 Thanks for stopping by!
-::

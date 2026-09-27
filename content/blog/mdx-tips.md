@@ -1,19 +1,21 @@
 ---
 title: Using your own components in MDC
 description: How to use Vue components inside Nuxt Content while keeping posts editable in Nuxt Studio.
-pubDate: 2026-09-20
-tags: [mdc, howto]
 mood: nerdy
+pubDate: 2026-09-20
+tags:
+  - mdc
+  - howto
 ---
 
 Nuxt Content uses Markdown Components, or MDC, to make Vue components available inside a post without executable imports or JSX.
 
 This site exposes a few deliberately small components to every post:
 
-- :blink[GeoCities]
-- :blink[Angelfire]
-- :blink[Tripod]
-- :blink[Homestead]
+- GeoCities
+- Angelfire
+- Tripod
+- Homestead
 
 Inline components use single-colon syntax. Block components use a pair of colons and can expose editable slots and typed props:
 

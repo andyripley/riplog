@@ -1,9 +1,12 @@
 ---
 title: Losing the Middle Ground
 description: Reddit and the emotional aspect of AI in the tech world.
-pubDate: 2026-09-24
-tags: [ai, meta, tech]
 nowPlaying: Klaus Schulze - Deus Arrakis
+pubDate: 2026-09-24
+tags:
+  - ai
+  - meta
+  - tech
 ---
 
 ## Group Think
