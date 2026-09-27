@@ -31,7 +31,7 @@ function isCurrent(href: string) {
             <span class="rainbow-text">{{ siteConfig.title }}</span>
           </NuxtLink>
         </h1>
-        <Search />
+        <TextSearch />
       </div>
       <Marquee>{{ siteConfig.tagline }}</Marquee>
     </header>
@@ -61,7 +61,7 @@ function isCurrent(href: string) {
             </nav>
 
             <h2>~ Socials ~</h2>
-            <Badges />
+            <SocialBadges />
 
             <h2>~ Subscribe ~</h2>
             <p class="center">

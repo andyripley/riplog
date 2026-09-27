@@ -19,7 +19,7 @@ withDefaults(
       <span class="date">{{ formatDate(post.pubDate) }}</span>
       <h3>
         <NuxtLink :to="post.path">{{ post.title }}</NuxtLink>
-        <New v-if="isNewPost(post.pubDate)" />
+        <NewBadge v-if="isNewPost(post.pubDate)" />
       </h3>
       <div>{{ post.description }}</div>
       <div v-if="showTags && post.tags?.length">
