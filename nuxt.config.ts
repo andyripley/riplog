@@ -22,7 +22,7 @@ export default defineNuxtConfig({
   nitro: {
     preset: "cloudflare-module",
     prerender: {
-      routes: ["/", "/rss.xml"],
+      routes: ["/"],
       crawlLinks: true,
     },
   },

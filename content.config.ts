@@ -13,6 +13,7 @@ export default defineContentConfig({
         tags: z.array(z.string()).default([]),
         mood: z.string().optional(),
         nowPlaying: z.string().optional(),
+        rawbody: z.string(),
       }),
     }),
     pages: defineCollection({

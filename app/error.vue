@@ -26,7 +26,7 @@ useHead({
 </script>
 
 <template>
-  <AppShell>
+  <NuxtLayout>
     <div class="center">
       <h1 class="error-code glow">
         {{ error.statusCode }}
@@ -63,7 +63,7 @@ C:\&gt; _</pre>
         </AppButton>
       </p>
     </div>
-  </AppShell>
+  </NuxtLayout>
 </template>
 
 <style scoped>
