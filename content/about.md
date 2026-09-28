@@ -3,7 +3,7 @@ title: About Me
 description: All about Andy Ripley.
 ---
 
-# :rainbow[About]
+# :effects-rainbow[About]
 
 Hello, I'm Andy Ripley. Beyond being a husband and father,
 I'm also a lover of technology, music and many other nerdy activities.

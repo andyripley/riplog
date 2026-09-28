@@ -4,7 +4,6 @@ export default defineNuxtConfig({
     "@nuxt/content",
     "@nuxt/eslint",
     "@nuxt/image",
-    "nuxt-studio",
   ],
   $production: {
     image: {
@@ -53,21 +52,5 @@ export default defineNuxtConfig({
   },
   image: {
     provider: "none",
-  },
-  studio: {
-    git: {
-      commit: {
-        messagePrefix: "content:",
-      },
-    },
-    media: {
-      external: true,
-    },
-    repository: {
-      provider: "github",
-      owner: "andyripley",
-      repo: "riplog",
-      branch: "main",
-    },
   },
 });

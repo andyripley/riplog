@@ -28,10 +28,18 @@ useHead({
 <template>
   <AppShell>
     <div class="center">
-      <h1 class="error-code glow">{{ error.statusCode }}</h1>
-      <h2 v-if="isNotFound"><Blink>ERROR!</Blink> File Not Found</h2>
-      <h2 v-else-if="isGone"><Blink>GONE!</Blink> Guestbook Removed</h2>
-      <h2 v-else><Blink>ERROR!</Blink> {{ error.statusMessage }}</h2>
+      <h1 class="error-code glow">
+        {{ error.statusCode }}
+      </h1>
+      <h2 v-if="isNotFound">
+        <EffectsBlink>ERROR!</EffectsBlink> File Not Found
+      </h2>
+      <h2 v-else-if="isGone">
+        <EffectsBlink>GONE!</EffectsBlink> Guestbook Removed
+      </h2>
+      <h2 v-else>
+        <EffectsBlink>ERROR!</EffectsBlink> {{ error.statusMessage }}
+      </h2>
       <p v-if="isNotFound">
         The page you requested has been abducted by aliens, or maybe it moved to
         GeoCities.
@@ -39,12 +47,21 @@ useHead({
       <p v-else-if="isGone">
         The guestbook has closed, but the rest of the homepage is still online.
       </p>
-      <p v-else>The server tripped over a modem cable. Please try again.</p>
-      <pre v-if="isNotFound" class="error-terminal">
+      <p v-else>
+        The server tripped over a modem cable. Please try again.
+      </p>
+      <pre
+        v-if="isNotFound"
+        class="error-terminal"
+      >
 C:\&gt; dir page.htm
 File not found
 C:\&gt; _</pre>
-      <p><Button href="/">&laquo; Return to homepage</Button></p>
+      <p>
+        <Button href="/">
+          &laquo; Return to homepage
+        </Button>
+      </p>
     </div>
   </AppShell>
 </template>

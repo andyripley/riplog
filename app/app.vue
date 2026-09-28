@@ -3,7 +3,7 @@ import { SITE } from "~/../shared/site";
 
 useHead({
   htmlAttrs: { lang: "en" },
-  titleTemplate: (title) => (title ? `${title} :: ${SITE.title}` : SITE.title),
+  titleTemplate: title => (title ? `${title} :: ${SITE.title}` : SITE.title),
   link: [
     { rel: "icon", href: "/favicon.ico", sizes: "any" },
     { rel: "sitemap", href: "/sitemap.xml" },
@@ -18,7 +18,7 @@ useHead({
 </script>
 
 <template>
-  <NuxtRouteAnnouncer />
+  <EffectsCursorTrail />
   <NuxtLayout>
     <NuxtPage />
   </NuxtLayout>
