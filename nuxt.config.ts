@@ -18,11 +18,6 @@ export default defineNuxtConfig({
     "@fontsource/atkinson-hyperlegible/700.css",
     "~/assets/css/index.css",
   ],
-  routeRules: {
-    "/rss.xml": {
-      redirect: "/rss.xml/",
-    },
-  },
   compatibilityDate: "2026-09-25",
   nitro: {
     preset: "cloudflare-module",
