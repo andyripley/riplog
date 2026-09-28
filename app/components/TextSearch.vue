@@ -4,9 +4,7 @@ const query = ref("");
 const results = ref([]);
 
 watch(query, async (value) => {
-  results.value = value
-    ? await search(value, { snippet: { columns: ["content"], around: 40 } })
-    : [];
+  results.value = value ? await search(value, { snippet: { columns: ["content"], around: 40 } }) : [];
 });
 </script>
 

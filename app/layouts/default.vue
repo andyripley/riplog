@@ -41,9 +41,9 @@ function isCurrent(href: string) {
 
             <h2>~ Subscribe ~</h2>
             <p class="center">
-              <Button href="/rss.xml">
+              <AppButton href="/rss.xml">
                 RSS Feed
-              </Button>
+              </AppButton>
             </p>
 
             <h2>~ Stats ~</h2>

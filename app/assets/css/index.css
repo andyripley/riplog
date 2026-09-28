@@ -3,7 +3,7 @@
    Component-specific styles live in each component's <style>.
    ========================================================== */
 
-@import "./tokens.css";
+@import "./vars.css";
 @import "./base.css";
 @import "./layout.css";
 @import "./effects.css";

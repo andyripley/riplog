@@ -58,9 +58,9 @@ C:\&gt; dir page.htm
 File not found
 C:\&gt; _</pre>
       <p>
-        <Button href="/">
+        <AppButton href="/">
           &laquo; Return to homepage
-        </Button>
+        </AppButton>
       </p>
     </div>
   </AppShell>

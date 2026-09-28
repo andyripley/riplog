@@ -44,9 +44,9 @@ defineProps<{ post: BlogCollectionItem }>();
 
     <hr class="rainbow">
     <p class="center">
-      <Button href="/blog">
+      <AppButton href="/blog">
         &laquo; More posts
-      </Button>
+      </AppButton>
     </p>
   </article>
 </template>

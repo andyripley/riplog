@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const { data: posts } = await useAsyncData("latest-posts", () =>
-  queryCollection("blog").order("pubDate", "DESC").limit(5).all(),
+  queryCollection("blog").order("pubDate", "DESC").limit(3).all(),
 );
 </script>
 
@@ -12,9 +12,9 @@ const { data: posts } = await useAsyncData("latest-posts", () =>
     </p>
     <PostList :posts="posts ?? []" />
     <p class="center">
-      <Button href="/blog">
+      <AppButton href="/blog">
         View all entries &raquo;
-      </Button>
+      </AppButton>
     </p>
     <UnderConstruction
       message="Pardon our dust! New stuff is added all the time."
